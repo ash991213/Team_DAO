@@ -5,14 +5,16 @@ const dotenv = require('dotenv');
 const { sequelize } = require('./models');
 const router = require('./router');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
 
 const port = 4000;
 
-app.use(cors({
-    origin: ['http://localhost:3000'],
-    credentials: true,
-}))
+app.use(
+    cors({
+        origin: '*',
+        credentials: true,
+    }),
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());

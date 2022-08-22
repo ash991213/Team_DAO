@@ -1,12 +1,7 @@
 {
     "development": {
-<<<<<<< HEAD
-        "username": "ash991213",
-        "password": "ash991213",
-=======
         "username": "gusdn6671",
         "password": "Gusdn6671****",
->>>>>>> b14e21be8d0bdfa060c78c55357c5fc8445b40fb
         "database": "login",
         "host": "127.0.0.1",
         "dialect": "mysql"
