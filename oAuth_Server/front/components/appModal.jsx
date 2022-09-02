@@ -15,7 +15,7 @@ const AppModal = ({isOpen, onClose}) => {
         }
         
         try {
-            const response = await axios.post(`${backend}/api/oauth/apiDistribution`, {appName, email: email})
+            const response = await axios.post(`${backend}/oauth/app/apiDistribution`, {appName, email: email})
             if(response.data.status == true) {
                 alert(response.data.msg)
                 onClose()

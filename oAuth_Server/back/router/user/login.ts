@@ -6,10 +6,14 @@ import crypto from 'crypto';
 import deployed from '../../web3';
 import VerifyId from '../../models/user/verifyId.model';
 import DataNeeded from '../../models/webSite/dataNeeded.model';
+import sequelize from '../../models/index';
+
+console.log(sequelize);
 
 const router = express.Router();
 
 router.post('/authorize', async (req: Request, res: Response) => {
+    console.log('오오오오오오오오??');
     const { email, password, restAPI, redirectURI } = req.body;
     const userhash = email + password;
     const hash = crypto.createHash('sha256').update(userhash).digest('base64');
@@ -30,7 +34,6 @@ router.post('/authorize', async (req: Request, res: Response) => {
             },
         },
     });
-
     try {
         if (dbUser) {
             const getSiteInfo = await DataNeeded.findOne({
@@ -61,6 +64,7 @@ router.post('/authorize', async (req: Request, res: Response) => {
                 };
 
                 await axios.post('http://localhost:4001/api/oauth/getCode', response);
+                res.redirect(`http://localhost:4001/api/Oauth/getCode2?redirectUri=${redirectUri}&code=${code}`);
             } else if (getSiteInfo?.restAPI === restAPI) {
                 const response = {
                     status: true,
@@ -84,6 +88,8 @@ router.post('/authorize', async (req: Request, res: Response) => {
         if (e instanceof Error) console.log(e.message);
     }
 });
+
+router.post('/code', async (req: Request, res: Response) => {});
 
 router.post('/localAuthorize', async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -209,4 +215,5 @@ router.post('/getToken', async (req: Request, res: Response) => {
      * 사용자 토큰 갱신 요청을 하면 갱신된 access token과 갱신된 refresh token이 함께 반환됩니다.
     */
 
+// 토큰을받으면 토큰해석해서 토큰 유저정보던져줌
 export default router;
