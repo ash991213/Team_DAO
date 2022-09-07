@@ -29,20 +29,17 @@ export default function Home() {
 
   const didLoginHandler = async (req, res) => {
     console.log(DIDid, DIdPw);
-    getCookie("ACCESS_TOKEN", "ㅁㄴㅇㄻㄴㄹㅇ", {
-      req,
-      res,
-      maxAge: 60 * 60 * 24 * 1000,
-    });
-    const codeUrl = location.href;
-    const code = codeUrl.split("response_type=")[1];
-    const restAPI = codeUrl.split("clientId=")[1].split("&")[0];
+
+    const Url = location.href;
+    const reUrl = Url.split("redirectUri=")[1];
+    console.log(reUrl);
+    const restAPI = Url.split("clientId=")[1].split("&")[0];
     console.log(restAPI);
     const response = await axios.post(`${backend}/oauth/login/authorize`, {
       email: DIDid,
       password: DIdPw,
-      code: code,
       restAPI: restAPI,
+      reUrl: reUrl,
     });
   };
 

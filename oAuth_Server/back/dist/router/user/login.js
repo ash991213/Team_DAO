@@ -15,17 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const sequelize_1 = require("sequelize");
-const axios_1 = __importDefault(require("axios"));
 const crypto_1 = __importDefault(require("crypto"));
 const web3_1 = __importDefault(require("../../web3"));
 const verifyId_model_1 = __importDefault(require("../../models/user/verifyId.model"));
-const dataNeeded_model_1 = __importDefault(require("../../models/webSite/dataNeeded.model"));
 const index_1 = __importDefault(require("../../models/index"));
 console.log(index_1.default);
 const router = express_1.default.Router();
 router.post('/authorize', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('오오오오오오오오??');
     const { email, password, restAPI, redirectURI } = req.body;
+    console.log(req.body);
     const userhash = email + password;
     const hash = crypto_1.default.createHash('sha256').update(userhash).digest('base64');
     const deploy = yield (0, web3_1.default)();
@@ -43,56 +41,10 @@ router.post('/authorize', (req, res) => __awaiter(void 0, void 0, void 0, functi
             },
         },
     });
+    const code = 'asdf';
     try {
         if (dbUser) {
-            const getSiteInfo = yield dataNeeded_model_1.default.findOne({
-                where: {
-                    restAPI: {
-                        [sequelize_1.Op.eq]: restAPI,
-                    },
-                },
-            });
-            if ((getSiteInfo === null || getSiteInfo === void 0 ? void 0 : getSiteInfo.restAPI) === restAPI) {
-                const response = {
-                    status: true,
-                    name: name,
-                    mobile: mobile,
-                    restAPI,
-                };
-                yield axios_1.default.post('http://localhost:4000/api/oauth/getCode', response);
-            }
-            else if ((getSiteInfo === null || getSiteInfo === void 0 ? void 0 : getSiteInfo.restAPI) === restAPI) {
-                const response = {
-                    status: true,
-                    hash: hash,
-                    restAPI: restAPI,
-                    redirectURI: redirectURI,
-                    name: name,
-                    gender: gender,
-                    mobile: mobile,
-                };
-                yield axios_1.default.post('http://localhost:4001/api/oauth/getCode', response);
-                res.redirect(`http://localhost:4001/api/Oauth/getCode2?redirectUri=${redirectUri}&code=${code}`);
-            }
-            else if ((getSiteInfo === null || getSiteInfo === void 0 ? void 0 : getSiteInfo.restAPI) === restAPI) {
-                const response = {
-                    status: true,
-                    restAPI: restAPI,
-                    mobile: mobile,
-                    userEmail: userEmail,
-                };
-                yield axios_1.default.post('http://localhost:4002/api/oauth/getCode', response);
-            }
-            else if ((getSiteInfo === null || getSiteInfo === void 0 ? void 0 : getSiteInfo.restAPI) === restAPI) {
-                const response = {
-                    status: true,
-                    name: name,
-                    age: age,
-                    address: address,
-                    restAPI: restAPI,
-                };
-                yield axios_1.default.post('http://localhost:4003/api/oauth/getCode', response);
-            }
+            res.redirect(`http://localhost:4001/api/oauth/getCode2?redirectURI=&code=${code}`);
         }
     }
     catch (e) {
@@ -100,7 +52,9 @@ router.post('/authorize', (req, res) => __awaiter(void 0, void 0, void 0, functi
             console.log(e.message);
     }
 }));
-router.post('/code', (req, res) => __awaiter(void 0, void 0, void 0, function* () { }));
+router.post('/token', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
+}));
 router.post('/localAuthorize', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     const userhash = email + password;

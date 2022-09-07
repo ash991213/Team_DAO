@@ -12,15 +12,18 @@ const Otp = {
     redirectUri: 'http://localhost:4001',
 };
 
-router.get('/', async (req, res) => {
+router.get('/DIDLogin', async (req, res) => {
     const url = `http://localhost:8080/login?clientId=${Otp.clientId}&redirectUri=${Otp.redirectUri}&response_type=code`;
     res.redirect(url);
 });
 
-router.get('/getCode2', (req, res) => {
+router.get('/getCode', async (req, res) => {
     console.log('여기까지오니??');
-    console.log(req.headers);
-    console.log(req.query); // 인가코드 받기
+    console.log(req.query.code); // 인가코드 받기
+    const { code } = req.query;
+
+    if (code) {
+    }
     // axios 요청 보내서 토큰 받기 (with 인가코드)
     // res.cookie('asfd', '')
     // res.json({sibal: 'sibal'})
@@ -28,32 +31,32 @@ router.get('/getCode2', (req, res) => {
     // axios 두번 oauth 백으로 1. 코드를던져서 토큰을받기 2. 토큰을던져서 유저정보받기
 });
 
-router.post('/getCode', async (req, res) => {
-    console.log('여기까지오니??');
-    const { restAPI, redirectURI, name, gender, mobile, hash } = req.body;
+// router.post('/getCode', async (req, res) => {
+//     console.log('여기까지오니??');
+//     const { restAPI, redirectURI, name, gender, mobile, hash } = req.body;
 
-    try {
-        if (restAPI) {
-            const Data = {
-                restAPI: restAPI,
-                redirectURI: redirectURI,
-                name: name,
-                gender: gender,
-                mobile: mobile,
-                hash: hash,
-                code: code0,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            await axios.post('http://localhost:8000/api/oauth/getToken', Data);
-        } else {
-            return res.status(403).send('RestAPI가 없습니다 ');
-        }
-    } catch (error) {
-        console.log(error);
-    }
-});
+//     try {
+//         if (restAPI) {
+//             const Data = {
+//                 restAPI: restAPI,
+//                 redirectURI: redirectURI,
+//                 name: name,
+//                 gender: gender,
+//                 mobile: mobile,
+//                 hash: hash,
+//                 code: code0,
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//             };
+//             await axios.post('http://localhost:8000/api/oauth/getToken', Data);
+//         } else {
+//             return res.status(403).send('RestAPI가 없습니다 ');
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
 
 router.post('/oAuthGetToken', async (req, res) => {
     const response = req.body;
