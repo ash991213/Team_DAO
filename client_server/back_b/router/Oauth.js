@@ -12,9 +12,9 @@ const router = express.Router();
 const baseUrl = 'http://localhost:8000';
 
 const Otp = {
-    clientId: 'db4b4f6666bb7ad62368fe39fa68b94',
+    clientId: 'f07bc5de4c9cd1b8d874a150228308d',
     redirectUri: 'http://localhost:4001/api/oauth/getCode',
-    client_secret: '12e4f803a3a3933b0ece3170cf1288e',
+    client_secret: '1489507410816383c368e652cc606a6',
 };
 
 router.get('/DIDLogin', async (req, res) => {
