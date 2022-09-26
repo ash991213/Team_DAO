@@ -19080,12 +19080,12 @@
     "420": {
       "events": {},
       "links": {},
-      "address": "0x235D609e0141E8e5395EB3E376e647FEA32EBe18",
-      "transactionHash": "0x3f42be950ce115b1f01387825e47f916653b10affd095e1eda5a1a54024bfc6a"
+      "address": "0xB1B99A3A43145B35C6B78DbD8B68CE8632d16889",
+      "transactionHash": "0x1a87d7e31ebf714e2918f777267741bd3e177b35370e8a72daf752f0782ce6e4"
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-09-24T07:57:49.700Z",
+  "updatedAt": "2022-09-26T01:20:47.056Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
