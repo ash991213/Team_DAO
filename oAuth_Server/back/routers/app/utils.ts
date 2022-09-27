@@ -2,7 +2,7 @@ import crypto from 'crypto';
 import DataNeeded from '../../models/webSite/dataNeeded.model';
 import RedirectURI from '../../models/webSite/redirectURI.model';
 import deployed from '../../web3';
-import { decrypt } from '../../services/utils/hash.service';
+import  {cipher, decipher } from '../../services/utils/hash.service';
 
 export const makeRedirectUriList = (length: any) => {
     let tempRedirectUri = new Array(length);
@@ -107,12 +107,12 @@ export const getUserinfo = async (restAPI: string, hash: string) => {
     const VP = await contract.methods.getVP(hash, reqVP).call();
 
     let vpObjects = [
-        { att: 'gender', value: decrypt(VP.gender) },
-        { att: 'name', value: decrypt(VP.name) },
-        { att: 'age', value: decrypt(VP.age) },
-        { att: 'addr', value: decrypt(VP.addr) },
-        { att: 'mobile', value: decrypt(VP.mobile) },
-        { att: 'email', value: decrypt(VP.email) },
+        { att: 'gender', value: cipher(VP.gender) },
+        { att: 'name', value: cipher(VP.name) },
+        { att: 'age', value: cipher(VP.age) },
+        { att: 'addr', value: cipher(VP.addr) },
+        { att: 'mobile', value: cipher(VP.mobile) },
+        { att: 'email', value: cipher(VP.email) },
     ];
 
     return vpObjects;
@@ -151,12 +151,12 @@ export const filterNotNeeded = (infos: any) => {
 
 export const makeRawVP = (VP: any) => {
     let rawVP = [
-        { att: 'gender', value: decrypt(VP.gender) },
-        { att: 'name', value: decrypt(VP.name) },
-        { att: 'age', value: decrypt(VP.age) },
-        { att: 'addr', value: decrypt(VP.addr) },
-        { att: 'mobile', value: decrypt(VP.mobile) },
-        { att: 'email', value: decrypt(VP.email) },
+        { att: 'gender', value: cipher(VP.gender) },
+        { att: 'name', value: cipher(VP.name) },
+        { att: 'age', value: cipher(VP.age) },
+        { att: 'addr', value: cipher(VP.addr) },
+        { att: 'mobile', value: cipher(VP.mobile) },
+        { att: 'email', value: cipher(VP.email) },
     ];
     return rawVP;
 };
