@@ -132,17 +132,15 @@ const BuyItem = ({ user, did }) => {
                 <Text fontSize="1.5rem">{title}</Text>
               </Box>
             </Flex>
-            <Box w="4 0rem" flex={2} pl="0.5rem" pt="1rem" borderBottom="1px solid rgba(0, 0, 0, 0.1);">
+            <Box w="4 0rem" flex={2} pl="0.5rem" pt="1rem">
               <Center borderBottom="1px solid rgba(0, 0, 0, 0.1);">
-                <Text fontSize="1.8rem" fontWeight="bold" pt="5rem" pl="24rem" pb="0.5rem">
+                <Text fontSize="1.8rem" fontWeight="bold" pt="10rem" pl="24rem" pb="0.5rem">
                   판매가 : {formattedPrice} P
                 </Text>
               </Center>
               {checkDid ? (
                 <Center>
-                  <Text fontSize="1.5rem" fontWeight="bold" pl="20rem" pt="11rem" pb="1rem">
-                    로컬 회원만 이용 가능합니다.
-                  </Text>
+                  <Text fontSize="1.5rem" fontWeight="bold" pl="20rem" pt="11rem" pb="1rem"></Text>
                 </Center>
               ) : (
                 <>
@@ -170,9 +168,7 @@ const BuyItem = ({ user, did }) => {
             <Box w="40rem" flex={2} pl="0.5rem" pt="1rem" borderBottom="1px solid rgba(0, 0, 0, 0.1);">
               {checkDid ? (
                 <>
-                  <Text textAlign="center" fontSize="1.5rem" fontWeight="bold">
-                    다른 사이트 포인트 사용
-                  </Text>
+                  <Text textAlign="center" fontSize="1.5rem" fontWeight="bold"></Text>
                   {token ? (
                     <>
                       <Text textAlign="right" fontSize="1.5rem" fontWeight="bold" pt="6rem" pr="0.5rem">
@@ -184,7 +180,7 @@ const BuyItem = ({ user, did }) => {
                     </>
                   ) : (
                     <>
-                      <Text textAlign="right" fontSize="1.5rem" fontWeight="bold" pt="6rem" pr="0.5rem">
+                      <Text textAlign="right" fontSize="1.5rem" fontWeight="bold" pt="7rem" pr="0.5rem">
                         {checkDid ? `${username}님 포인트 조회하기 ` : '로그인 후 이용가능 합니다'}
                       </Text>
                       <Button w="15rem" colorScheme="teal" variant="outline" ml="24rem" onClick={getPage} mb="1rem" disabled={checkDid ? false : true}>

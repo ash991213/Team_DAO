@@ -10,7 +10,7 @@ const filterNull = (uris) => {
 };
 
 const oauth_Front = 'http://teamdid.shop';
-const oauth_Back = 'http://13.124.225.13';
+const oauth_Back = 'http://43.200.46.217';
 const frontEnd = 'http://localhost:3001';
 
 // const oauth_Front = 'http://localhost:8080';

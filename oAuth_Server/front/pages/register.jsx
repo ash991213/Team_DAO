@@ -92,7 +92,6 @@ const register = ({ user }) => {
     if (verifier == verifyNum) {
       try {
         const regiEmail = email + domain;
-        console.log('hello');
 
         const response = await request.post(`${backend}/Oauth/user/oauthregister`, {
           email: regiEmail,
@@ -190,7 +189,7 @@ const register = ({ user }) => {
               <Input type="submit" value="회원가입" onClick={sendEmail} bg="gray.200" mb="20%" />
             ) : (
               <>
-                <Box h="30rem">
+                <Box h="40rem">
                   <Input type="text" placeholder="발송된 6자리 숫자를 입력하세요" id="verifier" style={{ color: 'white' }} />
                   <FormHelperText color="#fff">인증 번호는 3분간 유효합니다.</FormHelperText>
                   {loading ? (

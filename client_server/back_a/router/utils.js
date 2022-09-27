@@ -9,12 +9,12 @@ const filterNull = (uris) => {
     return newRedirectUri;
 };
 
-// const oauth_Front = 'http://teamdid.shop';
-// const oauth_Back = 'http://13.124.225.13';
-// const frontEnd = 'http://localhost:3000';
-
-const oauth_Front = 'http://localhost:8080';
-const oauth_Back = 'http://localhost:8000';
+const oauth_Front = 'http://teamdid.shop';
+const oauth_Back = 'http://43.200.46.217';
 const frontEnd = 'http://localhost:3000';
+
+// const oauth_Front = 'http://localhost:8080';
+// const oauth_Back = 'http://localhost:8000';
+// const frontEnd = 'http://localhost:3000';
 
 module.exports = { filterNull, oauth_Front, oauth_Back, frontEnd };

@@ -220,8 +220,8 @@ const Mypage = ({ hashId, email, user }) => {
           ) : (
             <Box w="100%" h="100%" pt="5%" px="5%" bg="#160627">
               <FormControl mt="3">
-                <Text fontSize={'225%'} px="25%" mb="5%" color="white" textAlign={'center'}>
-                  회원정보수정
+                <Text fontSize={'190%'} w="100%" px="25%" mb="5%" color="white" textAlign={'center'}>
+                  회원정보 수정
                 </Text>
                 <FormLabel fontSize={'125%'} px="2%" mb="3%" color="white">
                   이메일
@@ -255,7 +255,7 @@ const Mypage = ({ hashId, email, user }) => {
               </FormControl>
               {loading ? (
                 <Center>
-                  <Button color="#160627" mb="2rem" onClick={updateUser}>
+                  <Button color="#160627" m="2rem 0" onClick={updateUser}>
                     변경하기
                   </Button>
                 </Center>
@@ -264,7 +264,7 @@ const Mypage = ({ hashId, email, user }) => {
               )}
               <Divider />
 
-              <Text fontSize={'225%'} px="25%" pt="4rem" color="white" textAlign={'center'}>
+              <Text fontSize={'180%'} px="25%" pt="4rem" color="white" textAlign={'center'}>
                 비밀 번호 수정
               </Text>
 
@@ -296,7 +296,7 @@ const Mypage = ({ hashId, email, user }) => {
                 <LoadingModal isOpen={isOpen} onClose={onClose} />
               )}
               <Divider />
-              <Text fontSize={'210%'} px="35%" pt="4rem" color="white" textAlign={'center'}>
+              <Text fontSize={'220%'} px="20%" pt="4rem" color="white" textAlign={'center'}>
                 {' '}
                 회원 탈퇴{' '}
               </Text>
