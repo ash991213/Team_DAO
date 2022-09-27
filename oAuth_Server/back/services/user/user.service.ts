@@ -6,7 +6,7 @@ import DataNeeded from '../../models/webSite/dataNeeded.model';
 import RedirectURI from '../../models/webSite/redirectURI.model';
 import { responseObject } from '../../routers/app/utils';
 import deployed from '../../web3';
-import { cipher, decipher } from '../utils/hash.service';
+import { encrypt, decrypt } from '../utils/hash.service';
 
 let response: any;
 
@@ -17,12 +17,12 @@ const oAuthRegister = async (data: any) => {
         const hash = crypto.createHash('sha256').update(userHash).digest('base64');
 
         const DATA = {
-            email: cipher(email),
-            gender: cipher(gender),
-            name: cipher(name),
-            age: cipher(age),
-            addr: cipher(addr),
-            mobile: cipher(mobile),
+            email: encrypt(email),
+            gender: encrypt(gender),
+            name: encrypt(name),
+            age: encrypt(age),
+            addr: encrypt(addr),
+            mobile: encrypt(mobile),
         };
 
         const contract = await deployed;
@@ -72,12 +72,12 @@ const upDateUser = async (data: any) => {
 
     try {
         const DATA = {
-            email: cipher(email),
-            gender: cipher(gender),
-            name: cipher(name),
-            age: cipher(age),
-            addr: cipher(addr),
-            mobile: cipher(mobile),
+            email: encrypt(email),
+            gender: encrypt(gender),
+            name: encrypt(name),
+            age: encrypt(age),
+            addr: encrypt(addr),
+            mobile: encrypt(mobile),
         };
 
         console.log(DATA);
@@ -96,11 +96,11 @@ const upDateUser = async (data: any) => {
 
             response = {
                 status: true,
-                name: decipher(result[1]),
-                age: decipher(result[2]),
-                gender: decipher(result[0]),
-                addr: decipher(result[3]),
-                mobile: decipher(result[4]),
+                name: decrypt(result[1]),
+                age: decrypt(result[2]),
+                gender: decrypt(result[0]),
+                addr: decrypt(result[3]),
+                mobile: decrypt(result[4]),
                 msg: '회원정보가 변경되었습니다.',
             };
 
@@ -120,11 +120,11 @@ const searchUser = async (hashId: string) => {
 
         response = {
             status: true,
-            name: decipher(result[1]),
-            age: decipher(result[2]),
-            gender: decipher(result[0]),
-            addr: decipher(result[3]),
-            mobile: decipher(result[4]),
+            name: decrypt(result[1]),
+            age: decrypt(result[2]),
+            gender: decrypt(result[0]),
+            addr: decrypt(result[3]),
+            mobile: decrypt(result[4]),
         };
     } catch (e) {
         if (e instanceof Error) console.log(e.message);

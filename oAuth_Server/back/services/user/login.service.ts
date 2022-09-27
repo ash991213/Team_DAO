@@ -8,7 +8,7 @@ import { frontend } from '../../routers/user/utils';
 import App from '../../models/webSite/app.model';
 import DataNeeded from '../../models/webSite/dataNeeded.model';
 import VerifyId from '../../models/user/verifyId.model';
-import { cipher, decipher } from '../utils/hash.service';
+import { encrypt, decrypt } from '../utils/hash.service';
 
 let response: any;
 
@@ -30,7 +30,7 @@ const authorize = async (data: any) => {
 
         const result = await contract.methods.getUser(hash).call();
 
-        if (result[0] == '' || cipher(email) !== result[5]) {
+        if (result[0] == '' || encrypt(email) !== result[5]) {
             response = responseObject(false, 'id/pw를 확인해주세요');
             throw new Error(response.msg);
         }
@@ -152,7 +152,7 @@ const localAuthorize = async (email: string, password: string) => {
         const contract = await deployed;
         const result = await contract.methods.getUser(hash).call();
 
-        if (result[0] == '' || cipher(email) !== result[5]) {
+        if (result[0] == '' || encrypt(email) !== result[5]) {
             response = responseObject(false, 'id/pw를 확인해주세요');
             return response;
         }
